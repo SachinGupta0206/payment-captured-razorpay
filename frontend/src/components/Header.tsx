@@ -20,17 +20,23 @@ const Header: React.FC = () => {
   return (
     <header className="header">
       <div className="header__brand">
-        <span className="header__logo" aria-hidden="true">⚡</span>
+        <img
+          src="/favicon.svg"
+          alt="PaymentCaptured logo"
+          className="header__logo"
+          width={36}
+          height={36}
+        />
         <h1 className="header__title">PaymentCaptured</h1>
         <span className="header__subtitle">Webhook Dashboard</span>
       </div>
       <div className="header__status">
         <span
           className={`header__pill ${healthy === null
-              ? "header__pill--pending"
-              : healthy
-                ? "header__pill--healthy"
-                : "header__pill--unhealthy"
+            ? "header__pill--pending"
+            : healthy
+              ? "header__pill--healthy"
+              : "header__pill--unhealthy"
             }`}
           role="status"
           aria-label={`Backend status: ${healthy === null ? "checking" : healthy ? "healthy" : "unreachable"}`}
