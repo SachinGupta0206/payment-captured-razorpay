@@ -1,0 +1,22 @@
+# Render.com deployment configuration
+# Docs: https://render.com/docs/render-yaml-reference
+services:
+  - type: web
+    name: payment-captured-backend
+    env: node
+    region: singapore          # closest to India for low latency
+    plan: free
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+      - key: SUPABASE_URL
+        sync: false            # set manually in Render dashboard
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false            # set manually in Render dashboard — keep secret
+      - key: ALLOWED_ORIGINS
+        sync: false            # e.g. https://your-app.netlify.app

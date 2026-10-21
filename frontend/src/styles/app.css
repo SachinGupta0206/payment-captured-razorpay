@@ -1,0 +1,48 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app__main {
+  flex: 1;
+  padding: 1.5rem 2rem;
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Two-column layout: narrow sidebar + wide content */
+.app__grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.app__sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: sticky;
+  top: 80px; /* below fixed header */
+}
+
+.app__content {
+  min-width: 0; /* prevent grid blowout */
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .app__main {
+    padding: 1rem;
+  }
+
+  .app__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .app__sidebar {
+    position: static;
+  }
+}

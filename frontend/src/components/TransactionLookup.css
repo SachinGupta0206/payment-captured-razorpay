@@ -1,0 +1,46 @@
+.lookup__form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.lookup__form .form-input {
+  flex: 1;
+}
+
+.lookup__result {
+  margin: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.lookup__entry {
+  padding: 0.25rem 0;
+}
+
+.lookup__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+}
+
+.lookup__row:nth-child(even) {
+  background: var(--color-bg);
+}
+
+.lookup__row dt {
+  color: var(--color-text-muted);
+  font-weight: 500;
+  flex-shrink: 0;
+  min-width: 80px;
+}
+
+.lookup__row dd {
+  margin: 0;
+  color: var(--color-text-primary);
+  text-align: right;
+  word-break: break-all;
+}
