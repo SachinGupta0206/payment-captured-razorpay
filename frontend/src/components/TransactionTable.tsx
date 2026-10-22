@@ -51,7 +51,8 @@ const TransactionTable: React.FC<Props> = ({ refreshKey, onToast }) => {
   useEffect(() => {
     if (!supabase) return;
 
-    const channel = supabase
+    const client = supabase;
+    const channel = client
       .channel("transactions-realtime")
       .on(
         "postgres_changes",
@@ -73,7 +74,7 @@ const TransactionTable: React.FC<Props> = ({ refreshKey, onToast }) => {
       .subscribe();
 
     return () => {
-      void supabase.removeChannel(channel);
+      void client.removeChannel(channel);
     };
   }, []);
 
