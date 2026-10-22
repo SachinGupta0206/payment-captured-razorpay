@@ -155,19 +155,19 @@ const TransactionTable: React.FC<Props> = ({ refreshKey, onToast }) => {
             <tbody>
               {transactions.map((t) => (
                 <tr key={t.transaction_id} className={`table__row table__row--${t.status.toLowerCase()}`}>
-                  <td>
+                  <td data-label="Txn ID">
                     <code className="table__id">{t.transaction_id}</code>
                   </td>
-                  <td>{t.source_account}</td>
-                  <td>{t.destination_account}</td>
-                  <td className="table__amount">
+                  <td data-label="From">{t.source_account}</td>
+                  <td data-label="To">{t.destination_account}</td>
+                  <td data-label="Amount" className="table__amount">
                     {formatAmount(t.amount, t.currency)}
                   </td>
-                  <td>
+                  <td data-label="Status">
                     <StatusBadge status={t.status} />
                   </td>
-                  <td>{formatDate(t.created_at)}</td>
-                  <td>{formatDate(t.processed_at)}</td>
+                  <td data-label="Created">{formatDate(t.created_at)}</td>
+                  <td data-label="Processed">{formatDate(t.processed_at)}</td>
                 </tr>
               ))}
             </tbody>

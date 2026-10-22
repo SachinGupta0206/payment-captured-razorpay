@@ -6,43 +6,59 @@
 
 .app__main {
   flex: 1;
-  padding: 1.5rem 2rem;
+  padding: 0.75rem;
   max-width: 1600px;
   width: 100%;
   margin: 0 auto;
 }
 
+@media (min-width: 600px) {
+  .app__main {
+    padding: 1.25rem 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .app__main {
+    padding: 1.5rem 2rem;
+  }
+}
+
 /* Two-column layout: narrow sidebar + wide content */
 .app__grid {
   display: grid;
-  grid-template-columns: 340px 1fr;
-  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
   align-items: start;
+}
+
+@media (min-width: 600px) {
+  .app__grid {
+    gap: 1.25rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .app__grid {
+    grid-template-columns: 340px 1fr;
+    gap: 1.5rem;
+  }
 }
 
 .app__sidebar {
   display: flex;
   flex-direction: column;
   gap: 0;
-  position: sticky;
-  top: 80px; /* below fixed header */
+  position: static;
+}
+
+@media (min-width: 900px) {
+  .app__sidebar {
+    position: sticky;
+    top: 72px; /* below fixed header */
+  }
 }
 
 .app__content {
   min-width: 0; /* prevent grid blowout */
-}
-
-/* ─── Responsive ──────────────────────────────────────────────────────────── */
-@media (max-width: 900px) {
-  .app__main {
-    padding: 1rem;
-  }
-
-  .app__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .app__sidebar {
-    position: static;
-  }
 }
