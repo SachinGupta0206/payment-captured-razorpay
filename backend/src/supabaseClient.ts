@@ -1,10 +1,9 @@
-import { createClient, SupabaseClient } from "@supabase/supabase-js";
+import { createClient } from "@supabase/supabase-js";
 import { config } from "./config";
-import { Database } from "./types/database";
 
 // Use the service role key on the backend so we can bypass RLS for server-side writes.
 // Never expose this key to the frontend.
-const supabase: SupabaseClient<Database> = createClient<Database>(
+const supabase = createClient(
   config.supabase.url,
   config.supabase.serviceRoleKey,
   {
@@ -12,7 +11,7 @@ const supabase: SupabaseClient<Database> = createClient<Database>(
       autoRefreshToken: false,
       persistSession: false,
     },
-  }
+  },
 );
 
 export default supabase;
