@@ -3,13 +3,17 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Install dependencies first (better layer caching)
+# Copy package files first (better layer caching)
 COPY package*.json ./
-RUN npm ci --omit=dev
 
+# Install ALL dependencies (including devDeps needed for TypeScript build)
+RUN npm ci
+
+# Copy source
 COPY tsconfig.json ./
 COPY src ./src
 
+# Compile TypeScript → JavaScript
 RUN npm run build
 
 # ─── Production stage ─────────────────────────────────────────────────────────
@@ -19,10 +23,12 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-# Copy only what's needed at runtime
-COPY --from=builder /app/node_modules ./node_modules
+# Copy only production dependencies
+COPY package*.json ./
+RUN npm ci --omit=dev
+
+# Copy compiled output from builder
 COPY --from=builder /app/dist ./dist
-COPY package.json ./
 
 # Non-root user for security
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
